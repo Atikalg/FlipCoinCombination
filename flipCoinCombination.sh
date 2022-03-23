@@ -58,3 +58,37 @@ do
                         coin[TT]=$(( "${coin[TT]}" + 1 ))
         fi
 done
+#TRIPLE COIN FLIP
+
+for (( index=0; index<=$plays*3; index++ ))
+do
+        randomNumber=$(( RANDOM % 2 ))
+   randomNumber2=$(( RANDOM % 2 ))
+        randomNumber3=$(( RANDOM % 2 ))
+        if [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_HEAD -a $randomNumber3 -eq $IS_HEAD ]
+                then
+                        coin[HHH]=$(( "${coin[HHH]}" + 1 ))
+                elif [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_HEAD -a $randomNumber3 -eq $IS_TAILS ]
+                then
+                        coin[HHT]=$(( "${coin[HHT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_TAILS -a $randomNumber3 -eq $IS_TAILS ]
+      then
+                          coin[HTT]=$(( "${coin[HTT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_TAILS -a $randomNumber3 -eq $IS_TAILS ]
+      then
+                           coin[TTT]=$(( "${coin[TTT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_HEAD -a $randomNumber3 -eq $IS_HEAD ]
+      then
+                                coin[THH]=$(( "${coin[THH]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_TAILS -a $randomNumber3 -eq $IS_HEAD ]
+      then
+                                coin[TTH]=$(( "${coin[THH]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_HEAD -a $randomNumber3 -eq $IS_TAILS ]
+      then
+            coin[THT]=$(( "${coin[THT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_TAILS -a $randomNumber3 -eq $IS_HEAD ]
+      then
+            coin[HTH]=$(( "${coin[HTH]}" + 1 ))
+        fi
+done
+
