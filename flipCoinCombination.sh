@@ -92,3 +92,57 @@ do
         fi
 done
 
+#TRIPLE COIN FLIP
+
+for (( index=0; index<=$plays*3; index++ ))
+do
+        randomNumber=$(( RANDOM % 2 ))
+   randomNumber2=$(( RANDOM % 2 ))
+        randomNumber3=$(( RANDOM % 2 ))
+        if [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_HEAD -a $randomNumber3 -eq $IS_HEAD ]
+                then
+                        coin[HHH]=$(( "${coin[HHH]}" + 1 ))
+                elif [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_HEAD -a $randomNumber3 -eq $IS_TAILS ]
+                then
+                        coin[HHT]=$(( "${coin[HHT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_TAILS -a $randomNumber3 -eq $IS_TAILS ]
+      then
+                          coin[HTT]=$(( "${coin[HTT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_TAILS -a $randomNumber3 -eq $IS_TAILS ]
+      then
+                           coin[TTT]=$(( "${coin[TTT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_HEAD -a $randomNumber3 -eq $IS_HEAD ]
+      then
+                                coin[THH]=$(( "${coin[THH]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_TAILS -a $randomNumber3 -eq $IS_HEAD ]
+      then
+                                coin[TTH]=$(( "${coin[THH]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_HEAD -a $randomNumber3 -eq $IS_TAILS ]
+      then
+            coin[THT]=$(( "${coin[THT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_TAILS -a $randomNumber3 -eq $IS_HEAD ]
+      then
+            coin[HTH]=$(( "${coin[HTH]}" + 1 ))
+        fi
+done
+
+echo ${coin[@]}
+echo ${!coin[@]}
+HH=`awk "BEGIN{print (${coin[HH]} / $plays ) * 100}"`
+HT=`awk "BEGIN{print (${coin[HT]} / $plays ) * 100}"`
+TT=`awk "BEGIN{print ( ${coin[TT]} / $plays ) * 100}"`
+TH=`awk "BEGIN{print ( ${coin[TH]} / $plays ) * 100}"`
+H=`awk "BEGIN{print ( ${coin[H]} / $plays ) * 100}"`
+T=`awk "BEGIN{print ( ${coin[T]} / $plays ) * 100}"`
+HHH=`awk "BEGIN{print ( ${coin[HHH]} / $plays ) * 100}"`
+HHT=`awk "BEGIN{print ( ${coin[HHT]} / $plays ) * 100}"`
+HTT=`awk "BEGIN{print ( ${coin[HTT]} / $plays ) * 100}"`
+TTT=`awk "BEGIN{print ( ${coin[TTT]} / $plays ) * 100}"`
+THH=`awk "BEGIN{print ( ${coin[THH]} / $plays ) * 100}"`
+TTH=`awk "BEGIN{print ( ${coin[TTH]} / $plays ) * 100}"`
+THT=`awk "BEGIN{print ( ${coin[THT]} / $plays ) * 100}"`
+HTH=`awk "BEGIN{print ( ${coin[HTH]} / $plays ) * 100}"`
+
+printf "H percentage: $H \nT percentage: $T \n"
+printf "HH percentage: $HH \nHT percentage: $HT \nTT percentage: $TT\nTH percentage: $TH\n"
+printf "HHH prcentage: $HHH \nHHT percentage: $HHT \nHTT percentage: $HTT \nTTT percentage: $TTT \nTHH percentage : $THH \nTTH percentage: $TTH \nTHT percentage: $THT \nHTH percentage: $HTH\n"
