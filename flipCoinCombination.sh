@@ -38,3 +38,23 @@ do
          coin[T]=$(( "${coin[T]}" + 1 ))
 fi
 done
+#DOUBLE COIN FLIP
+
+for (( index=1; index<=$plays*2; index++ ))
+do
+   randomNumber=$(( RANDOM % 2 ))
+        randomNumber2=$(( RANDOM % 2 ))
+   if [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_HEAD ]
+        then
+        coin[HH]=$(( "${coin[HH]}" + 1 ))
+      elif [ $randomNumber -eq $IS_HEAD -a $randomNumber2 -eq $IS_TAILS ]
+      then
+                        coin[HT]=$(( "${coin[HT]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_HEAD ]
+                then
+                        coin[TH]=$(( "${coin[TH]}" + 1 ))
+                elif [ $randomNumber -eq $IS_TAILS -a $randomNumber2 -eq $IS_TAILS ]
+                then
+                        coin[TT]=$(( "${coin[TT]}" + 1 ))
+        fi
+done
